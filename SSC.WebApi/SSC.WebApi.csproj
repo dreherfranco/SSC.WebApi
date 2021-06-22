@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SSC.DbConfiguration\SSC.DbConfiguration.csproj" />
+    <ProjectReference Include="..\SSC.Modelos\SSC.Modelos.csproj" />
+    <ProjectReference Include="..\SSC.Repositorio\SSC.Repositorio.csproj" />
+    <ProjectReference Include="..\SSC.Servicios\SSC.Servicios.csproj" />
+  </ItemGroup>
+
+
+</Project>
