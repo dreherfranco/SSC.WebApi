@@ -20,22 +20,20 @@ namespace SSC.WebApi.Controllers
             this.Servicio = servicio;
         }
 
-
         [HttpGet]
         public ActionResult<List<Capitulo>> Get()
         {
             var capitulos = Servicio.ObtenerTodos();
-            return Ok(new { respuesta = capitulos, mensaje = "capitulos de un curso OK" });
+            return Ok(new { respuesta = capitulos, mensaje = "capitulos totales OK" });
         }
-        // GET: api/<CapituloController>
+
         [HttpGet("{nombreCurso}")]
-        public ActionResult<List<Capitulo>> GetByName(string nombreCurso)
+        public ActionResult<List<Capitulo>> GetByCourseName(string nombreCurso)
         {
             var capitulosCurso = Servicio.CapitulosDeUnCurso(nombreCurso);
             return Ok(new {respuesta= capitulosCurso , mensaje = "capitulos de un curso OK" });
         }
 
-        // POST api/<CapituloController>
         [HttpPost]
         public ActionResult<Capitulo> Post([FromBody] Capitulo value)
         {
