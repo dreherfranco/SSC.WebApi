@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SSC.Modelos;
+using SSC.Repositorio;
 using SSC.Servicios;
 using System;
 using System.Collections.Generic;
@@ -17,22 +18,30 @@ namespace SSC.WebApi.Controllers
         private readonly ServicioCurso Servicio;
         public CursoController(ServicioCurso servicio)
         {
-            this.Servicio = servicio;
+             this.Servicio = servicio;
         }
 
-
+        [Route("api/[controller]")]
         [HttpGet]
         public ActionResult<List<Curso>> Get()
         {
             var cursos = Servicio.ObtenerTodos();
-            return Ok(new { respuesta = cursos, mensaje = "cursos de un curso OK" });
+            return Ok(new { respuesta = cursos, mensaje = "curso OK" });
+        }
+
+        [Route("api/[controller]/{id:int}")]
+        [HttpGet]
+        public ActionResult<Curso> GetById(int id)
+        {
+            var curso = Servicio.ObtenerUnCursoPorId(id);
+            return Ok(new { respuesta = curso, mensaje = "curso OK" });
         }
 
         [HttpGet("{nombreCurso}")]
         public ActionResult<Curso> GetByCourseName(string nombreCurso)
         {
-            var curso = Servicio.ObtenerUnCurso(nombreCurso);
-            return Ok(new { respuesta = curso, mensaje = "curso de un curso OK" });
+            var curso = Servicio.ObtenerUnCursoPorNombre(nombreCurso);
+            return Ok(new { respuesta = curso, mensaje = "curso OK" });
         }
 
         [HttpPost]
@@ -40,6 +49,36 @@ namespace SSC.WebApi.Controllers
         {
             var curso = Servicio.Agregar(value);
             return Ok(new { curso = curso, mensaje = "curso agregado correctamente" });
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Put([FromBody]Curso value, int id)
+        {
+            try
+            {
+                value.Id = id;
+                this.Servicio.Actualizar(value);
+                return NoContent();
+            }
+            catch(Exception Ex)
+            {
+                return BadRequest(Ex);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var curso = this.Servicio.ObtenerUnCursoPorId(id);
+                this.Servicio.Borrar(curso);
+                return NoContent();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

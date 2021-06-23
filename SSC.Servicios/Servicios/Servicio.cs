@@ -26,5 +26,16 @@ namespace SSC.Servicios
         {
             return Repositorio.Obtener();
         }
+
+        public void Actualizar(TEntidad entidad)
+        {
+            Repositorio.Actualizar(entidad);
+        }
+
+        public void Borrar(TEntidad entidad )
+        {
+            Repositorio.Eliminar(entidad);
+        }
+
     }
 }
