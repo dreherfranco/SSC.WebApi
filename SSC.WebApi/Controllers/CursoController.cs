@@ -28,7 +28,7 @@ namespace SSC.WebApi.Controllers
             return Ok(new { respuesta = cursos, mensaje = "curso OK" });
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetCurso")]
         public ActionResult<Curso> GetById(int id)
         {
             var curso = Servicio.ObtenerUnCursoPorId(id);
@@ -39,7 +39,7 @@ namespace SSC.WebApi.Controllers
         public ActionResult<Curso> Post([FromBody] Curso value)
         {
             var curso = Servicio.Agregar(value);
-            return Ok(new { curso = curso, mensaje = "curso agregado correctamente" });
+            return new CreatedAtRouteResult("GetCurso", new { Id = curso.Id }, curso);
         }
 
         [HttpPut("{id}")]
