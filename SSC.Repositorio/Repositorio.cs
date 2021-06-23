@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SSC.DbConfiguration;
 using SSC.Modelos.Interface;
-using SSC.Repositorio.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SSC.Repositorio
 {
-    public class Repositorio<T>: IQueryManager<T> where T: class,IEntidad 
+    public class Repositorio<T> where T: class,IEntidad 
     {
         private ApplicationDbContext Contexto { get; set; }
         public Repositorio(ApplicationDbContext contexto)
@@ -26,19 +25,18 @@ namespace SSC.Repositorio
             return entity;
         }
 
-        public List<T> Obtener(Expression<Func<T, bool>> filtro = null)
+        public IEnumerable<T> Obtener(Expression<Func<T, bool>> filtro = null)
         {
             if (filtro == null)
             {
-                 return this.Contexto.Set<T>().ToList();
+                 return this.Contexto.Set<T>().AsEnumerable();
             }
             else
             {
-                return this.Contexto.Set<T>().Where(filtro).ToList();
+                return this.Contexto.Set<T>().Where(filtro);
              
             }
            
-
         }
 
         public void Eliminar(T entidad)
@@ -52,19 +50,6 @@ namespace SSC.Repositorio
         {
             this.Contexto.Entry(entidad).State = EntityState.Modified;
             this.Contexto.SaveChanges();
-        }
-
-        
-        public virtual IQueryable<T> Where(Expression<Func<T, bool>> where)
-        {
-            IQueryable<T> query = Contexto.Set<T>();
-
-            if (where != null)
-            {
-                query = query.Where(where);
-            }
-
-            return query;
         }
 
     }

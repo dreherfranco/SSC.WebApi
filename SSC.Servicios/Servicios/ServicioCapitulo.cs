@@ -19,7 +19,7 @@ namespace SSC.Servicios
         public List<Capitulo> CapitulosDeUnCurso(string nombreCurso)
         {
             Expression<Func<Capitulo, bool>> filtro = x => x.Curso.Nombre == nombreCurso;
-            return this.Repositorio.Obtener(filtro);
+            return this.Repositorio.Obtener(filtro).ToList();
         }
     }
 }

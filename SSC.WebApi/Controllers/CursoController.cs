@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SSC.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/curso")]
     [ApiController]
     public class CursoController : ControllerBase
     {
@@ -21,7 +21,6 @@ namespace SSC.WebApi.Controllers
              this.Servicio = servicio;
         }
 
-        [Route("api/[controller]")]
         [HttpGet]
         public ActionResult<List<Curso>> Get()
         {
@@ -29,21 +28,13 @@ namespace SSC.WebApi.Controllers
             return Ok(new { respuesta = cursos, mensaje = "curso OK" });
         }
 
-        [Route("api/[controller]/{id:int}")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<Curso> GetById(int id)
         {
             var curso = Servicio.ObtenerUnCursoPorId(id);
             return Ok(new { respuesta = curso, mensaje = "curso OK" });
         }
-
-        [HttpGet("{nombreCurso}")]
-        public ActionResult<Curso> GetByCourseName(string nombreCurso)
-        {
-            var curso = Servicio.ObtenerUnCursoPorNombre(nombreCurso);
-            return Ok(new { respuesta = curso, mensaje = "curso OK" });
-        }
-
+       
         [HttpPost]
         public ActionResult<Curso> Post([FromBody] Curso value)
         {

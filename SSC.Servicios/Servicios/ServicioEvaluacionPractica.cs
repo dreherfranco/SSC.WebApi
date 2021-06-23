@@ -21,7 +21,7 @@ namespace SSC.Servicios
         public  List<EvaluacionPractica> EvaluacionesPracticasDeUnCurso(string nombreCurso)
         {
             Expression<Func<EvaluacionPractica, bool>> filtro = x => x.Curso.Nombre == nombreCurso;
-            return Repositorio.Obtener(filtro);
+            return Repositorio.Obtener(filtro).ToList();
         }
 
         

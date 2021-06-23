@@ -20,7 +20,7 @@ namespace SSC.Servicios
         public List<EvaluacionTeorica> EvaluacionesTeoricasDeUnCurso(string nombreCurso)
         {
             Expression<Func<EvaluacionTeorica, bool>> filtro = x => x.Curso.Nombre == nombreCurso;
-            return Repositorio.Obtener(filtro);
+            return Repositorio.Obtener(filtro).ToList();
         }
     }
 }

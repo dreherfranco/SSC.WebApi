@@ -24,7 +24,7 @@ namespace SSC.Servicios
 
         public List<TEntidad> ObtenerTodos()
         {
-            return Repositorio.Obtener();
+            return Repositorio.Obtener().ToList();
         }
 
         public void Actualizar(TEntidad entidad)
