@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SSC.Modelos
@@ -14,6 +15,7 @@ namespace SSC.Modelos
         public int CursoId { get; set; }
         public string Tema { get; set; }
         public string Descripcion { get; set; }
+        [JsonIgnore]
         public virtual Curso Curso { get; set; }
     }
 }

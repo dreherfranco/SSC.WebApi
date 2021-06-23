@@ -16,9 +16,9 @@ namespace SSC.Servicios
             Repositorio = repositorio;
         }
 
-        public List<Capitulo> CapitulosDeUnCurso(string nombreCurso)
+        public List<Capitulo> CapitulosDeUnCurso(int idCurso)
         {
-            Expression<Func<Capitulo, bool>> filtro = x => x.Curso.Nombre == nombreCurso;
+            Expression<Func<Capitulo, bool>> filtro = x => x.Curso.Id == idCurso;
             return this.Repositorio.Obtener(filtro).ToList();
         }
     }

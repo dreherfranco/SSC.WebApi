@@ -27,10 +27,10 @@ namespace SSC.WebApi.Controllers
             return Ok(new { respuesta = capitulos, mensaje = "capitulos totales OK" });
         }
 
-        [HttpGet("{nombreCurso}")]
-        public ActionResult<List<Capitulo>> GetByCourseName(string nombreCurso)
+        [HttpGet("{idCurso:id}")]
+        public ActionResult<List<Capitulo>> GetByCourseName(int idCurso)
         {
-            var capitulosCurso = Servicio.CapitulosDeUnCurso(nombreCurso);
+            var capitulosCurso = Servicio.CapitulosDeUnCurso(idCurso);
             return Ok(new {respuesta= capitulosCurso , mensaje = "capitulos de un curso OK" });
         }
 

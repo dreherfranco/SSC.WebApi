@@ -18,9 +18,9 @@ namespace SSC.Servicios
             Repositorio = repositorio;
         }
 
-        public  List<EvaluacionPractica> EvaluacionesPracticasDeUnCurso(string nombreCurso)
+        public  List<EvaluacionPractica> EvaluacionesPracticasDeUnCurso(int idCurso)
         {
-            Expression<Func<EvaluacionPractica, bool>> filtro = x => x.Curso.Nombre == nombreCurso;
+            Expression<Func<EvaluacionPractica, bool>> filtro = x => x.Curso.Id == idCurso;
             return Repositorio.Obtener(filtro).ToList();
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SSC.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/evaluacion-teorica")]
     [ApiController]
     public class EvaluacionTeoricaController : ControllerBase
     {
@@ -27,10 +27,10 @@ namespace SSC.WebApi.Controllers
             return Ok(new { respuesta = evaluaciones, mensaje = "evaluaciones teoricas OK" });
         }
 
-        [HttpGet("{nombreCurso}")]
-        public ActionResult<List<EvaluacionTeorica>> GetByCourseName(string nombreCurso)
+        [HttpGet("{idCurso:int}")]
+        public ActionResult<List<EvaluacionTeorica>> GetByCourseName(int idCurso)
         {
-            var evaluacion = Servicio.EvaluacionesTeoricasDeUnCurso(nombreCurso);
+            var evaluacion = Servicio.EvaluacionesTeoricasDeUnCurso(idCurso);
             return Ok(new { respuesta = evaluacion, mensaje = "evaluaciones teoricas de un curso OK" });
         }
 
