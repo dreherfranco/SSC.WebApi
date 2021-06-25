@@ -2,7 +2,7 @@
 
 namespace SSC.WebApi.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,9 +48,9 @@ namespace SSC.WebApi.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Aprobado = table.Column<bool>(type: "INTEGER", nullable: false),
-                    NumeroEvaluacion = table.Column<int>(type: "INTEGER", nullable: false),
-                    CursoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CursoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Titulo = table.Column<string>(type: "TEXT", nullable: true),
+                    Aprobado = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +70,7 @@ namespace SSC.WebApi.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Calificacion = table.Column<int>(type: "INTEGER", nullable: false),
-                    NumeroEvaluacion = table.Column<int>(type: "INTEGER", nullable: false),
+                    Titulo = table.Column<string>(type: "TEXT", nullable: true),
                     CursoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -111,13 +111,13 @@ namespace SSC.WebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "EvaluacionesPracticas",
-                columns: new[] { "Id", "Aprobado", "CursoId", "NumeroEvaluacion" },
-                values: new object[] { 1, true, 1, 2 });
+                columns: new[] { "Id", "Aprobado", "CursoId", "Titulo" },
+                values: new object[] { 1, true, 1, "ev practica curso net core" });
 
             migrationBuilder.InsertData(
                 table: "EvaluacionesTeoricas",
-                columns: new[] { "Id", "Calificacion", "CursoId", "NumeroEvaluacion" },
-                values: new object[] { 1, 68, 1, 1 });
+                columns: new[] { "Id", "Calificacion", "CursoId", "Titulo" },
+                values: new object[] { 1, 68, 1, "ev teorica curso net core" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Capitulos_CursoId",

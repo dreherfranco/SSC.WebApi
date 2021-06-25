@@ -58,8 +58,8 @@ namespace SSC.DbConfiguration
             var capitulo2NetCore = new Capitulo {Id=2, CursoId =cursoNetCore.Id, Descripcion = "capitulo 2 del curso de net core", Tema = "AutoMapper" };
             var capitulo1Php = new Capitulo {Id=3, CursoId = cursoPhp.Id, Descripcion = "cap 1 curso PHP", Tema = "Variables" };
 
-            var evaluacionTeoricaNetCore = new EvaluacionTeorica { Id=1,NumeroEvaluacion=1,Calificacion = 68, CursoId = 1 };
-            var evaluacionPracticaNetCore = new EvaluacionPractica { Id=1,NumeroEvaluacion=2,Aprobado = true, CursoId = 1 };
+            var evaluacionTeoricaNetCore = new EvaluacionTeorica { Id=1,Titulo="ev teorica curso net core",Calificacion = 68, CursoId = 1 };
+            var evaluacionPracticaNetCore = new EvaluacionPractica { Id=1,Titulo="ev practica curso net core",Aprobado = true, CursoId = 1 };
 
             modelBuilder.Entity<Curso>()
                 .HasData( new List<Curso>()

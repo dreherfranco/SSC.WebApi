@@ -31,7 +31,8 @@ namespace SSC.WebApi
         {
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
+                options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), 
+                sqliteOptions => sqliteOptions.MigrationsAssembly("SSC.WebApi"))
             );
 
             IoC.AddDependenciasRepositorios(services);

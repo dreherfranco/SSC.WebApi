@@ -8,8 +8,8 @@ using SSC.DbConfiguration;
 namespace SSC.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210622173817_initial")]
-    partial class initial
+    [Migration("20210625155513_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,8 +110,8 @@ namespace SSC.WebApi.Migrations
                     b.Property<int>("CursoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("NumeroEvaluacion")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -125,7 +125,7 @@ namespace SSC.WebApi.Migrations
                             Id = 1,
                             Aprobado = true,
                             CursoId = 1,
-                            NumeroEvaluacion = 2
+                            Titulo = "ev practica curso net core"
                         });
                 });
 
@@ -141,8 +141,8 @@ namespace SSC.WebApi.Migrations
                     b.Property<int>("CursoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("NumeroEvaluacion")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Titulo")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -156,7 +156,7 @@ namespace SSC.WebApi.Migrations
                             Id = 1,
                             Calificacion = 68,
                             CursoId = 1,
-                            NumeroEvaluacion = 1
+                            Titulo = "ev teorica curso net core"
                         });
                 });
 
