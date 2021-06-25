@@ -24,22 +24,42 @@ namespace SSC.WebApi.Controllers
         [HttpGet]
         public ActionResult<List<Curso>> Get()
         {
-            var cursos = Servicio.ObtenerTodos();
-            return Ok(new { respuesta = cursos, mensaje = "curso OK" });
+            try
+            {
+                var cursos = Servicio.ObtenerTodos();
+                return Ok(new { respuesta = cursos, mensaje = "curso OK" });
+            }
+            catch
+            {
+                return StatusCode(500); 
+            }
         }
 
         [HttpGet("{id}", Name ="GetCurso")]
         public ActionResult<Curso> GetById(int id)
         {
-            var curso = Servicio.ObtenerUnCursoPorId(id);
-            return Ok(new { respuesta = curso, mensaje = "curso OK" });
+            try
+            {
+                var curso = Servicio.ObtenerUnCursoPorId(id);
+                return Ok(new { respuesta = curso, mensaje = "curso OK" });
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
        
         [HttpPost]
         public ActionResult<Curso> Post([FromBody] Curso value)
         {
-            var curso = Servicio.Agregar(value);
-            return new CreatedAtRouteResult("GetCurso", new { Id = curso.Id }, curso);
+            try
+            {
+                var curso = Servicio.Agregar(value);
+                return new CreatedAtRouteResult("GetCurso", new { Id = curso.Id }, curso);
+            }catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpPut("{id}")]

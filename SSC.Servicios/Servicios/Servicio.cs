@@ -3,6 +3,7 @@ using SSC.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,5 +38,11 @@ namespace SSC.Servicios
             Repositorio.Eliminar(entidad);
         }
 
+        public TEntidad ObtenerPorId(int id)
+        {
+            Expression<Func<TEntidad, bool>> filter = x => x.Id == id;
+            return Repositorio.Obtener(filter).FirstOrDefault();
+            
+        }
     }
 }

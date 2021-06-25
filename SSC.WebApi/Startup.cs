@@ -12,6 +12,7 @@ using SSC.DbConfiguration;
 using SSC.Modelos;
 using SSC.Repositorio;
 using SSC.Servicios;
+using SSC.WebApi.MetodosExtension;
 using System.Text.Json.Serialization;
 
 namespace SSC.WebApi
@@ -33,15 +34,10 @@ namespace SSC.WebApi
                 options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddTransient<Repositorio<Capitulo>>();
-            services.AddTransient<Repositorio<EvaluacionPractica>>();
-            services.AddTransient<Repositorio<EvaluacionTeorica>>();
-            services.AddTransient<Repositorio<Curso>>();
+            IoC.AddDependenciasRepositorios(services);
+            IoC.AddDependenciasServicios(services);
 
-            services.AddTransient<ServicioCapitulo>();
-            services.AddTransient<ServicioEvaluacionPractica>();
-            services.AddTransient<ServicioEvaluacionTeorica>();
-            services.AddTransient<ServicioCurso>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
