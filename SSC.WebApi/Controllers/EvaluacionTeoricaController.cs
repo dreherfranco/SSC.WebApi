@@ -27,7 +27,7 @@ namespace SSC.WebApi.Controllers
             return Ok(new { respuesta = evaluaciones, mensaje = "evaluaciones teoricas OK" });
         }
 
-        [HttpGet("{idCurso:int}")]
+        [HttpGet("curso/{idCurso:int}")]
         public ActionResult<List<EvaluacionTeorica>> GetByCourseId(int idCurso)
         {
             var evaluacion = Servicio.EvaluacionesTeoricasDeUnCurso(idCurso);

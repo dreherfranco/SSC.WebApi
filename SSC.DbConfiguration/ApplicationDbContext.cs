@@ -17,14 +17,12 @@ namespace SSC.DbConfiguration
 
         public ApplicationDbContext(DbContextOptions options): base(options)
         {
-            //Database.EnsureCreated();
+            
         }
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Curso>()
-                .HasKey(x => new { x.Id });
-            
+
             modelBuilder.Entity<Curso>()
                 .HasMany(x => x.EvaluacionesPracticas)
                 .WithOne(x => x.Curso)
@@ -38,17 +36,9 @@ namespace SSC.DbConfiguration
             modelBuilder.Entity<Curso>()
                 .HasMany(x => x.Capitulos)
                 .WithOne(x => x.Curso)
-                .HasForeignKey(x => x.CursoId);
+                .HasForeignKey(x => x.CursoId);        
 
 
-            modelBuilder.Entity<EvaluacionPractica>()
-                .HasKey(x => new { x.Id });
-
-            modelBuilder.Entity<EvaluacionTeorica>()
-                .HasKey(x => new { x.Id });
-
-            modelBuilder.Entity<Capitulo>()
-                .HasKey(x => new { x.Id });
             modelBuilder.Entity<Capitulo>()
                 .HasOne(x => x.Curso)
                 .WithMany(x=> x.Capitulos);

@@ -30,5 +30,18 @@ namespace SSC.Servicios
                 .FirstOrDefault();
             return curso;
         }
+
+        public new List<Curso> ObtenerTodos()
+        {
+            var cursos = Repositorio.Obtener()
+                .AsQueryable()
+                .Include(x => x.Capitulos)
+                .Include(x => x.EvaluacionesPracticas)
+                .Include(x => x.EvaluacionesTeoricas)
+                .ToList();
+
+            return cursos;
+        }
+
     }
 }
