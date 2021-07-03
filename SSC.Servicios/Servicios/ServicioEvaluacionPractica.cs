@@ -1,5 +1,4 @@
 ﻿using SSC.Modelos;
-using SSC.Modelos.Abstractas;
 using SSC.Repositorio;
 using System;
 using System.Collections.Generic;

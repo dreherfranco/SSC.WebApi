@@ -1,5 +1,4 @@
-﻿using SSC.Modelos.Abstractas;
-using SSC.Modelos.Interface;
+﻿using SSC.Modelos.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
